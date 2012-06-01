@@ -3,5 +3,5 @@
 COUNTER=0
 while dbops_null_error; do
     let COUNTER+=1
-    echo "Iteration $COUNTER"
+    echo "-----Completed iteration: $COUNTER"
 done
