@@ -1,0 +1,7 @@
+#!/bin/bash
+
+COUNTER=0
+while dbops_null_error; do
+    let COUNTER+=1
+    echo "Iteration $COUNTER"
+done
