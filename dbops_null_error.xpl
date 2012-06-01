@@ -14,13 +14,11 @@ my $db = 'usarray';
 my @db = dbopen($db, 'r');
 my @db_sitechan = dblookup(@db, '', 'sitechan', '', '');
 my @db_deployment = dblookup(@db, '', 'deployment', '', '');
-my @db_snetsta = dblookup(@db, '', 'snetsta', '', '');
 
 # Make a join to the deployment table:
 my @db_joined = dbjoin(@db_sitechan, @db_deployment);
 
-# Either of these causes the sporadic failure:
-# my @db_sub = dbsubset(@db_joined, 'offdate == NULL');
+# Subset using NULL string
 my @db_sub = dbsubset(@db_joined, 'endtime == NULL');
 
 print @db_sub;
