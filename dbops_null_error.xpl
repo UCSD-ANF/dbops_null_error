@@ -4,13 +4,16 @@
 use strict;
 use Datascope;
 
-my $db = '/opt/antelope/data/db/demo/demo';
+# my $db = '/opt/antelope/data/db/demo/demo';
+my $db = '/anf/TA/dbs/dbops/usarray';
 
 my @db = dbopen($db, 'r');
 my @db_sitechan = dblookup(@db, '', 'sitechan', '', '');
 my @db_deployment = dblookup(@db, '', 'deployment', '', '');
 my @db_joined = dbjoin(@db_sitechan, @db_deployment);
-my @db_sub = dbsubset(@db_joined, 'offdate == NULL');
+# my @db_sub = dbsubset(@db_joined, 'offdate == NULL');
+my @db_sub = dbsubset(@db_joined, 'endtime == NULL');
+# my @db_sub = dbsubset(@db_sitechan, 'offdate == NULL');
 
 print @db_sub;
 
