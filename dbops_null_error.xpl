@@ -8,15 +8,7 @@ use Datascope;
 # loads the Antelope demo database, plus a
 # custom made deployment table local to this dir
 
-my $db = '';
-my $local = 0;
-
-if($local == 1) {
-    $db = 'demo';
-} else {
-    # This is the main USArray dbmaster dbops dbdescriptor
-    $db = '/anf/TA/dbs/dbops/usarray';
-}
+my $db = 'usarray';
 
 # Open up some pointers
 my @db = dbopen($db, 'r');
