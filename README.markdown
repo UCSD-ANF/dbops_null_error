@@ -19,6 +19,7 @@ Red Hat Linux.
 
 ## Output you will see
 You will see something like:
+
     $ ./db_wrapper 
     043-501-501-----Completed iteration: 1
     043-501-501-----Completed iteration: 2
