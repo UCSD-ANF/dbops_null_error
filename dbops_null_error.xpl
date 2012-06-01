@@ -4,16 +4,32 @@
 use strict;
 use Datascope;
 
-# my $db = '/opt/antelope/data/db/demo/demo';
-my $db = '/anf/TA/dbs/dbops/usarray';
+# This is a local demo dbdescriptor file that
+# loads the Antelope demo database, plus a
+# custom made deployment table local to this dir
 
+my $db = '';
+my $local = 0;
+
+if($local == 1) {
+    $db = 'demo';
+} else {
+    # This is the main USArray dbmaster dbops dbdescriptor
+    $db = '/anf/TA/dbs/dbops/usarray';
+}
+
+# Open up some pointers
 my @db = dbopen($db, 'r');
 my @db_sitechan = dblookup(@db, '', 'sitechan', '', '');
 my @db_deployment = dblookup(@db, '', 'deployment', '', '');
+my @db_snetsta = dblookup(@db, '', 'snetsta', '', '');
+
+# Make a join to the deployment table:
 my @db_joined = dbjoin(@db_sitechan, @db_deployment);
+
+# Either of these causes the sporadic failure:
 # my @db_sub = dbsubset(@db_joined, 'offdate == NULL');
 my @db_sub = dbsubset(@db_joined, 'endtime == NULL');
-# my @db_sub = dbsubset(@db_sitechan, 'offdate == NULL');
 
 print @db_sub;
 
